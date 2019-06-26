@@ -64,7 +64,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
       $typeFile = $_FILES['gambar']['type'];
       $fileToUpload = $_FILES['gambar']['tmp_name'];
       $containerName = "blockblobs".generateRandomString();
-
+      echo  $fileToUpload;
 
         try {
 
