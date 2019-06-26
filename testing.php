@@ -54,7 +54,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
     } catch(Exception $e) {
         echo "Failed: " . $e;
     }
-
+    
     if (isset($_POST['submit'])) {
       $createContainerOptions = new CreateContainerOptions();
       $createContainerOptions->addMetaData("key1", "value1");
@@ -104,7 +104,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           echo "<br />";
 
           $url = 'https://myexampleapp.blob.core.windows.net/'.$containerName.'/'.$gambar;
-          $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
+          $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ($url);";
           $stmt = $conn->prepare($sql_insert);
 
           $stmt->execute();
