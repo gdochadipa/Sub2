@@ -59,15 +59,15 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
       $createContainerOptions = new CreateContainerOptions();
       $createContainerOptions->addMetaData("key1", "value1");
       $createContainerOptions->addMetaData("key2", "value2");
-
+      $gambar = $_FILES['gambar']['name'];
+      $sizeFile = $_FILES['gambar']['size'];
+      $typeFile = $_FILES['gambar']['type'];
+      $fileToUpload = $_FILES['gambar']['tmp_name'];
+        $containerName = $gambar;
 
 
         try {
-          $gambar = $_FILES['gambar']['name'];
-          $sizeFile = $_FILES['gambar']['size'];
-          $typeFile = $_FILES['gambar']['type'];
-          $fileToUpload = $_FILES['gambar']['tmp_name'];
-            $containerName = $gambar;
+
           // Create container.
           $blobClient->createContainer($containerName, $createContainerOptions);
 
@@ -102,12 +102,12 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           echo "<br />";
           //  $gambar = $_POST['gambar'];
             // Insert data
-          //  $sql_insert = "INSERT INTO tbl_vision2 (gambar)
-          //              VALUES (?)";
-          //  $stmt = $conn->prepare($sql_insert);
-          //  $stmt->bindValue(1, $gambar);
+            $sql_insert = "INSERT INTO tbl_vision2 (gambar)
+                        VALUES (?)";
+            $stmt = $conn->prepare($sql_insert);
+            $stmt->bindValue(1, $gambar);
 
-          //  $stmt->execute();
+            $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
