@@ -95,17 +95,16 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
                   $url = $blob->getUrl();
-                  $sql_insert = "INSERT INTO tbl_vision2 (gambar)
-                              VALUES ("testing");";
-                  $stmt = $conn->prepare($sql_insert);
 
-                  $stmt->execute();
               }
 
               $listBlobsOptions->setContinuationToken($result->getContinuationToken());
           } while($result->getContinuationToken());
           echo "<br />";
+          $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
+          $stmt = $conn->prepare($sql_insert);
 
+          $stmt->execute();
 
         } catch(Exception $e) {
             echo "Failed: " . $e;
