@@ -60,14 +60,14 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
       $createContainerOptions->addMetaData("key1", "value1");
       $createContainerOptions->addMetaData("key2", "value2");
 
-        $containerName = "blockblobs".generateRandomString();
+
 
         try {
           $gambar = $_FILES['gambar']['name'];
           $sizeFile = $_FILES['gambar']['size'];
           $typeFile = $_FILES['gambar']['type'];
           $fileToUpload = $_FILES['gambar']['tmp_name'];
-
+            $containerName = $gambar;
           // Create container.
           $blobClient->createContainer($containerName, $createContainerOptions);
 
