@@ -74,7 +74,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           // Getting local file so that we can upload it to Azure
          $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
           fclose($myfile);
-          $c=$containerName;
+
           # Mengunggah file sebagai block blob
           echo "Uploading BlockBlob: ".PHP_EOL;
           echo $fileToUpload;
@@ -91,7 +91,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           $url="";
 
           do{
-              $result = $blobClient->listBlobs($c, $listBlobsOptions);
+              $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
               foreach ($result->getBlobs() as $blob)
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
@@ -103,7 +103,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           } while($result->getContinuationToken());
           echo "<br />";
 
-
+          $url = "https://myexampleapp.blob.core.windows.net/".$containerName."/".$gambar;
           $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
           $stmt = $conn->prepare($sql_insert);
 
