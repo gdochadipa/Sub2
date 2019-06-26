@@ -94,8 +94,9 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
               foreach ($result->getBlobs() as $blob)
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
+                  $url = $blob->getUrl();
                   $sql_insert = "INSERT INTO tbl_vision2 (gambar)
-                              VALUES ($url);";
+                              VALUES ("testing");";
                   $stmt = $conn->prepare($sql_insert);
 
                   $stmt->execute();
