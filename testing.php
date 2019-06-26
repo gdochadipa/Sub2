@@ -72,8 +72,13 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           $blobClient->createContainer($containerName, $createContainerOptions);
 
           // Getting local file so that we can upload it to Azure
-        //  $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
-        //  fclose($myfile);
+         $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
+          fclose($myfile);
+
+          # Mengunggah file sebagai block blob
+          echo "Uploading BlockBlob: ".PHP_EOL;
+          echo $fileToUpload;
+          echo "<br />";
 
           $content = fopen($fileToUpload, "r");
 
