@@ -143,7 +143,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
                 echo "<th>Action</th></tr>";
                 foreach($registrants as $registrant) {
                     echo "<tr><td>".$registrant['gambar']."</td>";
-                    echo "<td><a href='vision.php?url=$url'>Analisa</a>  </td></tr>";
+                    echo "<td><a href='vision.php?url=".$registrant['gambar']."'>Analisa</a>  </td></tr>";
                 }
                 echo "</table>";
             } else {
