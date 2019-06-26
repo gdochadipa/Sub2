@@ -75,7 +75,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
           fclose($myfile);
 
-          $content = fopen($fileToUpload, "r");
+          $content = fopen($fileToUpload, "w");
 
           //Upload blob
           $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
