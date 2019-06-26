@@ -106,13 +106,6 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           } while($result->getContinuationToken());
           echo "<br />";
 
-          // Get blob.
-          echo "This is the content of the blob uploaded: ";
-          $blob = $blobClient->getBlob($containerName, $fileToUpload);
-          fpassthru($blob->getContentStream());
-          echo "<br />";
-          //  $gambar = $_POST['gambar'];
-            // Insert data
 
         } catch(Exception $e) {
             echo "Failed: " . $e;
