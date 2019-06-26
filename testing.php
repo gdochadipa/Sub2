@@ -37,7 +37,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
  <h1>Register here!</h1>
  <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
  <form method="post" action="testing.php" enctype="multipart/form-data" >
-       Gambar  <input type="file" name="name" id="name"/></br></br>
+       Gambar  <input type="file" name="gambar"  accept=".jpeg,.jpg,.png" required=""  id="gambar"/></br></br>
 
        <input type="submit" name="submit" value="Submit" />
        <input type="submit" name="load_data" value="Load Data" />
@@ -88,12 +88,13 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           // List blobs.
           $listBlobsOptions = new ListBlobsOptions();
           $listBlobsOptions->setPrefix("HelloWorld");
-
+          $url="";
           do{
               $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
               foreach ($result->getBlobs() as $blob)
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
+                  $url = $blob->getUrl();
               }
 
               $listBlobsOptions->setContinuationToken($result->getContinuationToken());
