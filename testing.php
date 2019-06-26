@@ -63,7 +63,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
       $sizeFile = $_FILES['gambar']['size'];
       $typeFile = $_FILES['gambar']['type'];
       $fileToUpload = $_FILES['gambar']['tmp_name'];
-        $containerName = $gambar;
+          $containerName = "blockblobs_".generateRandomString();
 
 
         try {
@@ -72,7 +72,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           $blobClient->createContainer($containerName, $createContainerOptions);
 
           // Getting local file so that we can upload it to Azure
-          $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+          $myfile = fopen($fileToUpload, "w") or die("Unable to open file!");
           fclose($myfile);
 
           $content = fopen($fileToUpload, "r");
