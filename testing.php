@@ -103,7 +103,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           } while($result->getContinuationToken());
           echo "<br />";
 
-          $url = "https://myexampleapp.blob.core.windows.net/".$containerName."/".$gambar;
+          $url = 'https://myexampleapp.blob.core.windows.net/'.$containerName.'/'.$gambar;
           $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
           $stmt = $conn->prepare($sql_insert);
 
