@@ -37,7 +37,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
  <h1>Register here!</h1>
  <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
  <form method="post" action="testing.php" enctype="multipart/form-data" >
-       Gambar  <input type="file" name="gambar"  accept=".jpeg,.jpg,.png" required=""  id="gambar"/></br></br>
+       Gambar  <input type="file" name="gambar"  accept=".jpeg,.jpg,.png"  id="gambar"/></br></br>
 
        <input type="submit" name="submit" value="Submit" />
        <input type="submit" name="load_data" value="Load Data" />
@@ -64,7 +64,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
       $typeFile = $_FILES['gambar']['type'];
       $fileToUpload = $_FILES['gambar']['tmp_name'];
       $containerName = "blockblobs".generateRandomString();
-      echo  $fileToUpload;
+
 
         try {
 
@@ -94,7 +94,12 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
               foreach ($result->getBlobs() as $blob)
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
-                  $url = $blob->getUrl();
+                  $sql_insert = "INSERT INTO tbl_vision2 (gambar)
+                              VALUES (?)";
+                  $stmt = $conn->prepare($sql_insert);
+                  $stmt->bindValue(1, $url);
+
+                  $stmt->execute();
               }
 
               $listBlobsOptions->setContinuationToken($result->getContinuationToken());
@@ -108,12 +113,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           echo "<br />";
           //  $gambar = $_POST['gambar'];
             // Insert data
-            $sql_insert = "INSERT INTO tbl_vision2 (gambar)
-                        VALUES (?)";
-            $stmt = $conn->prepare($sql_insert);
-            $stmt->bindValue(1, $gambar);
 
-            $stmt->execute();
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
