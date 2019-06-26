@@ -87,8 +87,9 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 
           // List blobs.
           $listBlobsOptions = new ListBlobsOptions();
-          $listBlobsOptions->setPrefix("HelloWorld");
+          $listBlobsOptions->setPrefix("");
           $url="";
+          /*
           do{
               $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
               foreach ($result->getBlobs() as $blob)
@@ -101,6 +102,16 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
               $listBlobsOptions->setContinuationToken($result->getContinuationToken());
           } while($result->getContinuationToken());
           echo "<br />";
+          */
+          $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+          foreach ($result->getBlobs() as $blob)
+          {
+              echo $blob->getName().": ".$blob->getUrl()."<br />";
+              $url = $blob->getUrl();
+
+          }
+        //  $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+
           $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
           $stmt = $conn->prepare($sql_insert);
 
