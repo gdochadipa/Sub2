@@ -104,9 +104,9 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
           echo "<br />";
           //https://myexampleapp.blob.core.windows.net/blockblobsbqgwnp/Royal-Gems-Golf-City-003.jpg
         $url = "https://myexampleapp.blob.core.windows.net/".$containerName."/Royal-Gems-Golf-City-003.jpg";
-          $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES ('$url');";
+          $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES (?);";
           $stmt = $conn->prepare($sql_insert);
-
+           $stmt->bindValue(1, $url);
           $stmt->execute();
 
         } catch(Exception $e) {
