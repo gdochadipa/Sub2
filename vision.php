@@ -42,7 +42,7 @@ $url = $_GET['url'];
         };
 
         // Display the image.
-        var sourceImageUrl = <?php echo $url; ?>;
+        var sourceImageUrl = "<?php echo $url; ?>";
         document.querySelector("#sourceImage").src = sourceImageUrl;
 
         // Make the REST API call.

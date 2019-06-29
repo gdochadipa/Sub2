@@ -42,8 +42,8 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
  <form method="post" action="testing.php" enctype="multipart/form-data" >
        Gambar  <input type="file" name="gambar"  accept=".jpeg,.jpg,.png"  id="gambar"/></br></br>
 
-       <input type="submit" name="submit" value="Submit" />
-       <input type="submit" name="load_data" value="Load Data" />
+       <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
+       <input type="submit" class="btn btn-secondary" name="load_data" value="Load Data" />
  </form>
  <?php
   $host = "tcp:gdocha.database.windows.net";
