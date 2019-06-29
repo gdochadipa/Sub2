@@ -65,12 +65,12 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
       $typeFile = $_FILES['gambar']['type'];
       $fileToUpload = $_FILES['gambar']['tmp_name'];
       $containerName = "blockblobs".generateRandomString();
-
+      $get_name = $containerName;
 
         try {
           $blobClient = BlobRestProxy::createBlobService($connectionString);
           // Create container.
-          $blobClient->createContainer($containerName, $createContainerOptions);
+          $blobClient->createContainer($get_name, $createContainerOptions);
 
           // Getting local file so that we can upload it to Azure
          $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
@@ -84,7 +84,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
           $content = fopen($fileToUpload, "r");
 
           //Upload blob
-          $blobClient->createBlockBlob($containerName, $gambar, $content);
+          $blobClient->createBlockBlob($get_name, $gambar, $content);
 
           // List blobs.
           $listBlobsOptions = new ListBlobsOptions();
@@ -92,7 +92,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
           $url="";
 
           do{
-              $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+              $result = $blobClient->listBlobs($get_name, $listBlobsOptions);
               foreach ($result->getBlobs() as $blob)
               {
                   echo $blob->getName().": ".$blob->getUrl()."<br />";
@@ -104,7 +104,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
           } while($result->getContinuationToken());
           echo "<br />";
           //https://myexampleapp.blob.core.windows.net/blockblobsbqgwnp/Royal-Gems-Golf-City-003.jpg
-      //  $url = 'https://myexampleapp.blob.core.windows.net/'.$containerName.'/'.$gambar.'';
+        $url = 'https://myexampleapp.blob.core.windows.net/'.$containerName.'/'.$gambar.'';
           $sql_insert = "INSERT INTO tbl_vision2(gambar) VALUES (?);";
           $stmt = $conn->prepare($sql_insert);
            $stmt->bindValue(1, $url);
