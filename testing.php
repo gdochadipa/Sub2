@@ -64,7 +64,13 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
 
       $createContainerOptions->addMetaData("key1", "value1");
       $createContainerOptions->addMetaData("key2", "value2");
-      $gambar = $_FILES['gambar']['name'];
+
+      $file = $_FILES['gambar']['name'];
+      $_imgExtension = end((explode(".",$file)));
+      date_default_timezone_get('Asia/Kuala_Lumpur');
+      $time = date('Ymdhis');
+
+      $gambar = $time.".".$_imgExtension;
       $sizeFile = $_FILES['gambar']['size'];
       $typeFile = $_FILES['gambar']['type'];
       $fileToUpload = $_FILES['gambar']['tmp_name'];
