@@ -65,7 +65,7 @@ $url = $_GET['url'];
         .done(function(data) {
             // Show formatted JSON on webpage.
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
-
+            console.log(data);
             $("#caption").text(data.description.caption[0].text);
         })
 
