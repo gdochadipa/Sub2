@@ -39,7 +39,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
  <body>
  <h1>Register here!</h1>
  <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
- <form method="post" action="index.php.php" enctype="multipart/form-data" >
+ <form method="post" action="index.php" enctype="multipart/form-data" >
        Gambar  <input type="file" name="gambar"  accept=".jpeg,.jpg,.png"  id="gambar"/></br></br>
 
        <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
