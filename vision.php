@@ -5,7 +5,11 @@ $url = $_GET['url'];
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Analyze Sample</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
@@ -38,7 +42,7 @@ $url = $_GET['url'];
         };
 
         // Display the image.
-        var sourceImageUrl = document.getElementById("inputImage").value;
+        var sourceImageUrl = <?php echo $url; ?>;
         document.querySelector("#sourceImage").src = sourceImageUrl;
 
         // Make the REST API call.
@@ -61,6 +65,8 @@ $url = $_GET['url'];
         .done(function(data) {
             // Show formatted JSON on webpage.
             $("#responseTextArea").val(JSON.stringify(data, null, 2));
+
+            $("#caption").text(data.description.caption[0].text);
         })
 
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -78,9 +84,9 @@ $url = $_GET['url'];
 Enter the URL to an image, then click the <strong>Analyze image</strong> button.
 <br><br>
 Image to analyze:
-<input type="text" name="inputImage" id="inputImage"
-    value=<?php echo $url; ?> />
-<button onclick="processImage()">Analyze image</button>
+<!-- <input type="text" name="inputImage" id="inputImage"
+  value=<?php// echo $url; ?> /> -->
+<button type="button" class="btn btn-primary" onclick="processImage()">Analyze image</button>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
@@ -93,6 +99,11 @@ Image to analyze:
         Source image:
         <br><br>
         <img id="sourceImage" width="400" />
+          <br><br>
+          <div class="alert alert-primary" role="alert">
+              <h4 id="caption">Deskripsi</h4>
+          </div>
+
     </div>
 </div>
 </body>

@@ -17,6 +17,10 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
 
 <html>
  <head>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
  <Title>Registration Form</Title>
  <style type="text/css">
  	body { background-color: #fff; border-top: solid 10px #000;
@@ -144,7 +148,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=myexampleapp;Acc
                 echo "<th>Action</th></tr>";
                 foreach($registrants as $registrant) {
                     echo "<tr><td>".$registrant['gambar']."</td>";
-                    echo "<td><a href='vision.php?url=".$registrant['gambar']."'>Analisa</a>  </td></tr>";
+                    echo "<td><a href='vision.php?url=".$registrant['gambar']."' class='btn btn-primary' >Analisa</a>  </td></tr>";
                 }
                 echo "</table>";
             } else {
