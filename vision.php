@@ -87,6 +87,7 @@ Image to analyze:
 <!-- <input type="text" name="inputImage" id="inputImage"
   value=<?php// echo $url; ?> /> -->
 <button type="button" class="btn btn-primary" onclick="processImage()">Analyze image</button>
+<a href="https://imagevision.azurewebsites.net/index.php" class="btn btn-danger"> Back</a>
 <br><br>
 <div id="wrapper" style="width:1020px; display:table;">
     <div id="jsonOutput" style="width:600px; display:table-cell;">
